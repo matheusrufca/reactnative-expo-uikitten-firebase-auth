@@ -9,7 +9,7 @@ import reducers from './reducers';
 
 
 import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { createBottomTabNavigator , createStackNavigator } from 'react-navigation';
 import { firebaseConfig } from './config/auth';
 import { bootstrap } from './config/bootstrap';
 import { RkStyleSheet, RkTheme } from 'react-native-ui-kitten';
@@ -77,44 +77,93 @@ settings_screen: { screen: Settings_Screen },
 
   render() {
 
-    const MainNavigator = TabNavigator({
+    // const MainNavigator = TabNavigator({
+    //   menu_scr: { screen: Menu_Screen },
+    //   orders_screen: { screen: Orders_Screen },
+    //   settings_screen: { screen: Settings_Screen },
+    // },
+    // {
+    //   navigationOptions: {
+    //     headerLeft: null,
+    //     headerStyle: {
+    //        backgroundColor: 'white',
+    //        elevation: 2,
+    //        paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight + 10
+    //      },
+    //      headerTitleStyle: {
+    //        fontSize: RkTheme.current.fonts.sizes.h5,
+    //        alignSelf:'center',
+    //        marginBottom: Platform.OS === 'ios' ? 0 : 10,
+    //        marginTop: Platform.OS === 'ios' ? 25: 0
+    //      }
+    //   },
+    //   tabBarOptions: {
+    //     showLabel: false,
+    //     showIcon: true,
+    //     indicatorStyle: { backgroundColor: '#ffffff' },
+    //     activeTintColor: RkTheme.current.colors.accent,
+    //     inactiveTintColor: RkTheme.current.colors.text.hint,
+    //     style: { backgroundColor: '#ffffff' },
+    //   },
+    //   cardStyle: {
+    //     paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+    //   },
+    //   swipeEnabled: false,
+    //   tabBarPosition: 'bottom',
+    // })
+
+    const MainNavigator = createBottomTabNavigator({
       menu_scr: { screen: Menu_Screen },
       orders_screen: { screen: Orders_Screen },
       settings_screen: { screen: Settings_Screen },
     },
     {
       navigationOptions: {
-        headerLeft: null,
-        headerStyle: {
-           backgroundColor: 'white',
-           elevation: 2,
-           paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight + 10
-         },
-         headerTitleStyle: {
-           fontSize: RkTheme.current.fonts.sizes.h5,
-           alignSelf:'center',
-           marginBottom: Platform.OS === 'ios' ? 0 : 10,
-           marginTop: Platform.OS === 'ios' ? 25: 0
-         }
+        // headerLeft: null,
+        // headerStyle: {
+        //    backgroundColor: 'white',
+        //    elevation: 2,
+        //    paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight + 10
+        //  },
+        //  headerTitleStyle: {
+        //    fontSize: RkTheme.current.fonts.sizes.h5,
+        //    alignSelf:'center',
+        //    marginBottom: Platform.OS === 'ios' ? 0 : 10,
+        //    marginTop: Platform.OS === 'ios' ? 25: 0
+        //  }
       },
       tabBarOptions: {
-        showLabel: false,
-        showIcon: true,
-        indicatorStyle: { backgroundColor: '#ffffff' },
-        activeTintColor: RkTheme.current.colors.accent,
-        inactiveTintColor: RkTheme.current.colors.text.hint,
-        style: { backgroundColor: '#ffffff' },
+        // showLabel: false,
+        // showIcon: true,
+        // indicatorStyle: { backgroundColor: '#ffffff' },
+        // activeTintColor: RkTheme.current.colors.accent,
+        // inactiveTintColor: RkTheme.current.colors.text.hint,
+        // style: { backgroundColor: '#ffffff' },
       },
-      cardStyle: {
-        paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
-      },
-      swipeEnabled: false,
-      tabBarPosition: 'bottom',
-    })
+      // cardStyle: {
+      //   paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+      // }
+    });
 
 //       loading_scr: { screen: Loading_Screen },
 
-    const LoginNavigator = StackNavigator({
+    // const LoginNavigator = StackNavigator({
+    //   welcome_screen: { screen: Welcome_Screen },
+    //   register_screen: { screen: Register_Screen },
+    //   reset_screen: { screen: Reset_Screen },
+    //   profile_screen: { screen: Profile_Screen },
+    //   login_screen: { screen: Login_Screen},
+    //   main_screen: { screen: MainNavigator}
+    //   },
+    //   {
+    //     navigationOptions: {
+    //       tabBarVisible: false
+    //     },
+    //     swipeEnabled: false,
+    //     lazy: true
+    //   });
+
+     const LoginNavigator = createStackNavigator({
       welcome_screen: { screen: Welcome_Screen },
       register_screen: { screen: Register_Screen },
       reset_screen: { screen: Reset_Screen },
@@ -129,6 +178,8 @@ settings_screen: { screen: Settings_Screen },
         swipeEnabled: false,
         lazy: true
       });
+
+     
 
       return (
         <Provider store={this.store}>

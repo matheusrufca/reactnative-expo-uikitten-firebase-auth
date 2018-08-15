@@ -1,7 +1,7 @@
 
 // Taken from https://github.com/react-community/react-navigation/issues/1439
 
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions,StackActions  } from 'react-navigation';
 import type { NavigationParams, NavigationRoute } from 'react-navigation';
 
 let _container; // eslint-disable-line
@@ -13,18 +13,29 @@ function setContainer(container: Object) {
 function reset(routeName: string, params?: NavigationParams) {
   console.log('navigator: utils/navigator.js ---------------------->  Here');
   console.log('routeName = ' + routeName);
-  _container.dispatch(
-    NavigationActions.reset({
+  const resetAction = StackActions.reset({
       index: 0,
-      actions: [
-        NavigationActions.navigate({
-          type: 'Navigation/NAVIGATE',
-          routeName,
-          params,
-        }),
-      ],
-    }),
-  );
+      actions: [NavigationActions.navigate({
+        type: 'Navigation/NAVIGATE',
+        routeName,
+        params
+      })],      
+  });
+  
+  _container.dispatch(resetAction);
+
+  // _container.dispatch(
+  //   NavigationActions.reset({
+  //     index: 0,
+  //     actions: [
+  //       NavigationActions.navigate({
+  //         type: 'Navigation/NAVIGATE',
+  //         routeName,
+  //         params,
+  //       }),
+  //     ],
+  //   }),
+  // );
 }
 
 function navigate(routeName: string, params?: NavigationParams) {
